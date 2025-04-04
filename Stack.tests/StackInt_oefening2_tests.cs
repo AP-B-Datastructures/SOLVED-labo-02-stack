@@ -32,7 +32,7 @@ namespace Stack.tests
 
             var result = stack.IsEmpty;
 
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(false,result);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Stack.tests
 
             var result = stack.IsFull;
 
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(false,result);
         }
 
     }

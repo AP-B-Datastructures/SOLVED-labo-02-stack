@@ -4,38 +4,75 @@ namespace Stack.library
 {
     public class StackMath
     {
-        private char[] data = new char[10];
-        private int top = -1;
+        private char[] _data = new char[10];
+        private int _top = 0;
 
-        public bool IsEmpty => throw new NotImplementedException();
+        public bool IsEmpty => this._top == 0;
 
-        public bool IsFull => throw new NotImplementedException();
+        public bool IsFull => this._top == this._data.Length;
 
         public StackMath(int initialSize = 10)
         {
-            throw new NotImplementedException();
+            this._data = new char[initialSize];
         }
 
         // geeft TRUE terug wanneer de gegeven formule geldig is, anders FALSE.
         // - formula: een string met de formule die gevalideerd moet worden.
         public bool EvaluateFormula(string formula)
         {
-            throw new NotImplementedException();
+            foreach(var c in formula)
+            {
+                if (c == '(')
+                {
+                    this.Push(c);
+                }
+                if (c == ')')
+                {
+                    try
+                    {
+                        this.Pop();
+                    }
+                    catch (System.Exception)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return this.IsEmpty;
         }
 
         public void Push(char newValue)
         {
-            throw new NotImplementedException();
+            if (this.IsFull)
+            {
+                this.ResizeArray();
+            }
+
+            this._data[this._top] = newValue;
+            this._top++;
         }
 
         public char Pop()
         {
-            throw new NotImplementedException();
+            if (this.IsEmpty)
+            {
+                throw new InvalidOperationException("Pop failed because stack is empty");
+            }
+            this._top--;
+            return this._data[this._top];
         }
 
         private void ResizeArray()
         {
-            throw new NotImplementedException();
+            char[] newDataArray = new char[this._data.Length * 2];
+
+            for (int i = 0; i < this._data.Length; ++i)
+            {
+                newDataArray[i] = this._data[i];
+            }
+
+            this._data = newDataArray;
         }
     }
 }

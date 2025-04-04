@@ -16,8 +16,7 @@ namespace Stack.tests
         }
 
         [TestMethod]
-        public void Push_StackIncreasesSize()
-        {
+        public void Push_StackIncreasesSize() { 
             // Arrange
             for (int i = 0; i < 1000; i++)
             {

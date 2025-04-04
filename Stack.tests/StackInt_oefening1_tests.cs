@@ -15,11 +15,13 @@ namespace Stack.tests
             stack = new StackInt();
         }
 
-        [TestMethod]
-        public void Push_AddsElementToStack()
+        [DataTestMethod]
+        [DataRow(10)]
+        [DataRow(7)]
+        [DataRow(4291)]
+        public void Push_AddsElementToStack(int element)
         {
             // Arrange
-            int element = 10;
 
             // Act
             stack.Push(element);

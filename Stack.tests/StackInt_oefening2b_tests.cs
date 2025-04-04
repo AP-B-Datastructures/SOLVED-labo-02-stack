@@ -16,16 +16,41 @@ namespace Stack.tests
         }
 
 
-        [TestMethod]
-        public void IsEmpty_EmptyStackIsEmpty()
+        [DataTestMethod]
+        [DataRow(3)]
+        [DataRow(0)]
+        [DataRow(5)]
+        public void IsEmpty_EmptyStackIsEmpty(int numberOfPushAndPops)
         {
-            throw new NotImplementedException();
+            // Arrange
+
+            // Act
+            for (var i = 0; i < numberOfPushAndPops; ++i)
+            {
+                stack.Push(i);
+            }
+            for (var i = 0; i < numberOfPushAndPops; ++i)
+            {
+                stack.Pop();
+            }
+
+            // Assert
+            Assert.AreEqual(true, stack.IsEmpty);
         }
 
         [TestMethod]
         public void IsFull_FullStackIsFull()
         {
-            throw new NotImplementedException();
+            // Arrange
+
+            // Act
+            for (var i = 0; i < 10; ++i)
+            {
+                stack.Push(i);
+            }
+
+            // Assert
+            Assert.AreEqual(true, stack.IsFull);
         }
     }
 }

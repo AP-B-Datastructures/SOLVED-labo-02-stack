@@ -17,8 +17,7 @@ namespace Stack.tests
         }
 
         [TestMethod]
-        public void EvaluateFormula_EmptyStringIsValid()
-        {
+        public void EvaluateFormula_EmptyStringIsValid() {
             var result = stack.EvaluateFormula("");
 
             Assert.AreEqual(true, result);
@@ -28,7 +27,18 @@ namespace Stack.tests
         [DataRow("1+2")]
         [DataRow("1+2+3")]
         [DataRow("12+233+34+45555")]
-        public void EvaluateFormula_StringWithoutBracketsIsValid(string formula)
+        public void EvaluateFormula_StringWithoutBracketsIsValid(string formula) { 
+            var result = stack.EvaluateFormula(formula);
+
+            Assert.AreEqual(true, result);
+        }
+
+        [DataTestMethod]
+        [DataRow("(1 + 2)")]
+        [DataRow("(1 + 2) + 3")]
+        [DataRow("4 + (1 + 2) + 3")]
+        [DataRow("4 + (1 + 2)")]
+        public void EvaluateFormula_ValidSinglePairOfBrackets(string formula)
         {
             var result = stack.EvaluateFormula(formula);
 
@@ -36,15 +46,15 @@ namespace Stack.tests
         }
 
         [DataTestMethod]
-        public void EvaluateFormula_ValidSinglePairOfBrackets(string formula)
-        {
-            throw new NotImplementedException();
-        }
-
-        [DataTestMethod]
+        [DataRow(")1 + 2(")]
+        [DataRow("3 + )1 + 2(")]
+        [DataRow(")1 + 2( + 3")]
+        [DataRow("4 + )1 + 2( + 3")]
         public void EvaluateFormula_InvalidSinglePairOfBrackets(string formula)
         {
-            throw new NotImplementedException();
+            var result = stack.EvaluateFormula(formula);
+
+            Assert.AreEqual(false, result);
         }
     }
 }
